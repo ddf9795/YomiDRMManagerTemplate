@@ -1,0 +1,791 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://music.mp3" type="AudioStream" id=2]
+[ext_resource path="res://HomeLayer.gd" type="Script" id=3]
+[ext_resource path="res://CharWindow.gd" type="Script" id=4]
+[ext_resource path="res://SeashantyWindow.gd" type="Script" id=6]
+[ext_resource path="res://mute.png" type="Texture" id=7]
+[ext_resource path="res://theme.tres" type="Theme" id=8]
+[ext_resource path="res://Background.gd" type="Script" id=9]
+[ext_resource path="res://logo.png" type="Texture" id=10]
+[ext_resource path="res://SignInLayer.gd" type="Script" id=11]
+[ext_resource path="res://MainMenuLayer.gd" type="Script" id=12]
+[ext_resource path="res://EditLayer.gd" type="Script" id=13]
+[ext_resource path="res://AddLayer.gd" type="Script" id=14]
+[ext_resource path="res://KeywordDisplay.tscn" type="PackedScene" id=15]
+[ext_resource path="res://restify.png" type="Texture" id=16]
+[ext_resource path="res://godot.png" type="Texture" id=17]
+[ext_resource path="res://CreditsLayer.gd" type="Script" id=18]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.0431373, 0.0470588, 0.0588235, 1 )
+
+[sub_resource type="Theme" id=2]
+Panel/styles/panel = SubResource( 1 )
+
+[node name="Main" type="Node"]
+script = ExtResource( 1 )
+version = "v1.1.0"
+
+[node name="Background" type="Panel" parent="."]
+margin_right = 640.0
+margin_bottom = 360.0
+theme = SubResource( 2 )
+script = ExtResource( 9 )
+
+[node name="Version" type="Label" parent="Background"]
+unique_name_in_owner = true
+margin_left = 5.0
+margin_top = 345.0
+margin_right = 45.0
+margin_bottom = 359.0
+theme = ExtResource( 8 )
+text = "v1.0"
+
+[node name="ErrorLabel" type="Label" parent="Background"]
+unique_name_in_owner = true
+visible = false
+margin_top = 346.0
+margin_right = 40.0
+margin_bottom = 360.0
+rect_min_size = Vector2( 640, 0 )
+size_flags_horizontal = 2
+theme = ExtResource( 8 )
+text = "ERROR"
+align = 2
+
+[node name="SignInLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+script = ExtResource( 11 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SignInLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 4
+theme = ExtResource( 8 )
+alignment = 1
+
+[node name="Label" type="Label" parent="SignInLayer/VBoxContainer"]
+margin_left = 261.0
+margin_top = 156.0
+margin_right = 378.0
+margin_bottom = 167.0
+size_flags_horizontal = 4
+text = "Sign Into Admin Account"
+
+[node name="Username" type="HBoxContainer" parent="SignInLayer/VBoxContainer"]
+margin_top = 168.0
+margin_right = 640.0
+margin_bottom = 179.0
+alignment = 1
+
+[node name="Label" type="Label" parent="SignInLayer/VBoxContainer/Username"]
+margin_left = 231.0
+margin_right = 280.0
+margin_bottom = 11.0
+text = "Username"
+
+[node name="UsernameField" type="LineEdit" parent="SignInLayer/VBoxContainer/Username"]
+margin_left = 281.0
+margin_right = 409.0
+margin_bottom = 11.0
+rect_min_size = Vector2( 128, 0 )
+
+[node name="Password" type="HBoxContainer" parent="SignInLayer/VBoxContainer"]
+margin_top = 180.0
+margin_right = 640.0
+margin_bottom = 191.0
+alignment = 1
+
+[node name="Label" type="Label" parent="SignInLayer/VBoxContainer/Password"]
+margin_left = 231.0
+margin_right = 280.0
+margin_bottom = 11.0
+text = "Password"
+
+[node name="PasswordField" type="LineEdit" parent="SignInLayer/VBoxContainer/Password"]
+margin_left = 281.0
+margin_right = 409.0
+margin_bottom = 11.0
+rect_min_size = Vector2( 128, 0 )
+secret = true
+
+[node name="SignInButton" type="Button" parent="SignInLayer/VBoxContainer"]
+margin_left = 303.0
+margin_top = 192.0
+margin_right = 337.0
+margin_bottom = 204.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 4
+text = "Submit"
+
+[node name="HomeLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+script = ExtResource( 12 )
+
+[node name="TextureRect" type="TextureRect" parent="HomeLayer"]
+margin_left = 220.0
+margin_top = 13.0
+margin_right = 426.0
+margin_bottom = 103.0
+size_flags_horizontal = 4
+texture = ExtResource( 10 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HomeLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 197.0
+margin_right = -203.0
+theme = ExtResource( 8 )
+alignment = 1
+
+[node name="AddButton" type="Button" parent="HomeLayer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 129.0
+margin_right = 240.0
+margin_bottom = 145.0
+rect_min_size = Vector2( 0, 16 )
+mouse_default_cursor_shape = 2
+custom_colors/font_color_hover = Color( 1, 0.2, 0.239216, 1 )
+text = "Add New User"
+
+[node name="EditButton" type="Button" parent="HomeLayer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 146.0
+margin_right = 240.0
+margin_bottom = 162.0
+rect_min_size = Vector2( 0, 16 )
+mouse_default_cursor_shape = 2
+custom_colors/font_color_hover = Color( 1, 0.2, 0.239216, 1 )
+text = "Edit Existing Users"
+
+[node name="HelpButton" type="Button" parent="HomeLayer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 163.0
+margin_right = 240.0
+margin_bottom = 179.0
+rect_min_size = Vector2( 0, 16 )
+mouse_default_cursor_shape = 2
+custom_colors/font_color_hover = Color( 1, 0.2, 0.239216, 1 )
+text = "Help"
+
+[node name="CreditsButton" type="Button" parent="HomeLayer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 180.0
+margin_right = 240.0
+margin_bottom = 196.0
+rect_min_size = Vector2( 0, 16 )
+mouse_default_cursor_shape = 2
+custom_colors/font_color_hover = Color( 1, 0.2, 0.239216, 1 )
+text = "Credits"
+
+[node name="SignOutButton" type="Button" parent="HomeLayer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 197.0
+margin_right = 240.0
+margin_bottom = 213.0
+rect_min_size = Vector2( 0, 16 )
+mouse_default_cursor_shape = 2
+custom_colors/font_color_hover = Color( 1, 0.2, 0.239216, 1 )
+text = "Sign Out"
+
+[node name="QuitButton" type="Button" parent="HomeLayer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 214.0
+margin_right = 240.0
+margin_bottom = 230.0
+rect_min_size = Vector2( 0, 16 )
+mouse_default_cursor_shape = 2
+custom_colors/font_color_hover = Color( 1, 0.2, 0.239216, 1 )
+text = "Quit Application"
+
+[node name="CharSelectLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CharSelectLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 4
+theme = ExtResource( 8 )
+alignment = 1
+
+[node name="Label" type="Label" parent="CharSelectLayer/VBoxContainer"]
+margin_left = 274.0
+margin_top = 152.0
+margin_right = 366.0
+margin_bottom = 163.0
+size_flags_horizontal = 4
+text = "Select a Character"
+align = 1
+
+[node name="CharacterList" type="ItemList" parent="CharSelectLayer/VBoxContainer"]
+unique_name_in_owner = true
+margin_left = 192.0
+margin_top = 164.0
+margin_right = 448.0
+margin_bottom = 194.0
+rect_min_size = Vector2( 256, 0 )
+size_flags_horizontal = 4
+items = [ "Simple", null, false, "Advanced", null, false ]
+auto_height = true
+
+[node name="CharacterSelectButton" type="Button" parent="CharSelectLayer/VBoxContainer"]
+unique_name_in_owner = true
+margin_left = 304.0
+margin_top = 195.0
+margin_right = 336.0
+margin_bottom = 207.0
+size_flags_horizontal = 4
+text = "Next >"
+
+[node name="BackButton" type="Button" parent="CharSelectLayer"]
+margin_left = 66.0
+margin_top = 22.0
+margin_right = 143.0
+margin_bottom = 42.0
+theme = ExtResource( 8 )
+text = "< Back"
+
+[node name="AddLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+script = ExtResource( 14 )
+
+[node name="AddLayerContainer" type="VBoxContainer" parent="AddLayer"]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 8 )
+alignment = 1
+
+[node name="Header" type="HBoxContainer" parent="AddLayer/AddLayerContainer"]
+margin_top = 174.0
+margin_right = 640.0
+margin_bottom = 185.0
+alignment = 1
+
+[node name="Label" type="Label" parent="AddLayer/AddLayerContainer/Header"]
+margin_left = 249.0
+margin_right = 298.0
+margin_bottom = 11.0
+size_flags_horizontal = 4
+text = "Add User: "
+align = 1
+
+[node name="CharNameLabel" type="Label" parent="AddLayer/AddLayerContainer/Header"]
+unique_name_in_owner = true
+margin_left = 299.0
+margin_right = 391.0
+margin_bottom = 11.0
+size_flags_horizontal = 4
+text = "[CHARACTER NAME]"
+align = 1
+
+[node name="SimpleEdit" type="PanelContainer" parent="AddLayer/AddLayerContainer"]
+unique_name_in_owner = true
+visible = false
+margin_left = 362.0
+margin_top = 275.0
+margin_right = 662.0
+margin_bottom = 337.0
+rect_min_size = Vector2( 300, 0 )
+mouse_filter = 2
+size_flags_horizontal = 4
+script = ExtResource( 4 )
+charname = "Simple"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AddLayer/AddLayerContainer/SimpleEdit"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 299.0
+margin_bottom = 61.0
+
+[node name="Nickname" type="VBoxContainer" parent="AddLayer/AddLayerContainer/SimpleEdit/VBoxContainer"]
+margin_left = 21.0
+margin_right = 277.0
+margin_bottom = 23.0
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="AddLayer/AddLayerContainer/SimpleEdit/VBoxContainer/Nickname"]
+margin_right = 256.0
+margin_bottom = 11.0
+text = "Nickname"
+align = 1
+
+[node name="NicknameField" type="LineEdit" parent="AddLayer/AddLayerContainer/SimpleEdit/VBoxContainer/Nickname"]
+margin_top = 12.0
+margin_right = 256.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 256, 0 )
+size_flags_horizontal = 4
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="SteamID" type="VBoxContainer" parent="AddLayer/AddLayerContainer/SimpleEdit/VBoxContainer"]
+margin_left = 21.0
+margin_top = 24.0
+margin_right = 277.0
+margin_bottom = 47.0
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="AddLayer/AddLayerContainer/SimpleEdit/VBoxContainer/SteamID"]
+margin_right = 256.0
+margin_bottom = 11.0
+text = "Steam ID (SteamID64) "
+align = 1
+
+[node name="SteamIDField" type="LineEdit" parent="AddLayer/AddLayerContainer/SimpleEdit/VBoxContainer/SteamID"]
+margin_top = 12.0
+margin_right = 256.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 256, 0 )
+size_flags_horizontal = 4
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="Submit" type="Button" parent="AddLayer/AddLayerContainer/SimpleEdit/VBoxContainer"]
+margin_top = 48.0
+margin_right = 298.0
+margin_bottom = 60.0
+text = "Submit"
+
+[node name="AdvancedEdit" type="PanelContainer" parent="AddLayer/AddLayerContainer"]
+unique_name_in_owner = true
+visible = false
+margin_left = 362.0
+margin_top = 86.0
+margin_right = 662.0
+margin_bottom = 289.0
+rect_min_size = Vector2( 300, 0 )
+mouse_filter = 2
+size_flags_horizontal = 4
+script = ExtResource( 6 )
+charname = "Advanced"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AddLayer/AddLayerContainer/AdvancedEdit"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 299.0
+margin_bottom = 202.0
+
+[node name="Nickname" type="VBoxContainer" parent="AddLayer/AddLayerContainer/AdvancedEdit/VBoxContainer"]
+margin_left = 21.0
+margin_right = 277.0
+margin_bottom = 23.0
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="AddLayer/AddLayerContainer/AdvancedEdit/VBoxContainer/Nickname"]
+margin_right = 256.0
+margin_bottom = 11.0
+text = "Nickname"
+align = 1
+
+[node name="NicknameField" type="LineEdit" parent="AddLayer/AddLayerContainer/AdvancedEdit/VBoxContainer/Nickname"]
+margin_top = 12.0
+margin_right = 256.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 256, 0 )
+size_flags_horizontal = 4
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="SteamID" type="VBoxContainer" parent="AddLayer/AddLayerContainer/AdvancedEdit/VBoxContainer"]
+margin_left = 21.0
+margin_top = 24.0
+margin_right = 277.0
+margin_bottom = 47.0
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="AddLayer/AddLayerContainer/AdvancedEdit/VBoxContainer/SteamID"]
+margin_right = 256.0
+margin_bottom = 11.0
+text = "Steam ID (SteamID64) "
+align = 1
+
+[node name="SteamIDField" type="LineEdit" parent="AddLayer/AddLayerContainer/AdvancedEdit/VBoxContainer/SteamID"]
+margin_top = 12.0
+margin_right = 256.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 256, 0 )
+size_flags_horizontal = 4
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="Access" type="VBoxContainer" parent="AddLayer/AddLayerContainer/AdvancedEdit/VBoxContainer"]
+margin_left = 85.0
+margin_top = 48.0
+margin_right = 213.0
+margin_bottom = 188.0
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="AddLayer/AddLayerContainer/AdvancedEdit/VBoxContainer/Access"]
+margin_right = 128.0
+margin_bottom = 11.0
+text = "Access"
+align = 1
+
+[node name="AccessList" type="ItemList" parent="AddLayer/AddLayerContainer/AdvancedEdit/VBoxContainer/Access"]
+margin_top = 12.0
+margin_right = 128.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 128, 128 )
+items = [ "Keyword 1", null, false, "Keyword 2", null, false, "Keyword 3", null, false ]
+select_mode = 1
+auto_height = true
+
+[node name="Submit" type="Button" parent="AddLayer/AddLayerContainer/AdvancedEdit/VBoxContainer"]
+margin_top = 189.0
+margin_right = 298.0
+margin_bottom = 201.0
+text = "Submit"
+
+[node name="BackButton" type="Button" parent="AddLayer"]
+margin_left = 66.0
+margin_top = 22.0
+margin_right = 143.0
+margin_bottom = 42.0
+theme = ExtResource( 8 )
+text = "< Back"
+
+[node name="EditLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+script = ExtResource( 13 )
+
+[node name="Header" type="HBoxContainer" parent="EditLayer"]
+margin_top = 46.0
+margin_right = 640.0
+margin_bottom = 60.0
+theme = ExtResource( 8 )
+alignment = 1
+
+[node name="Label" type="Label" parent="EditLayer/Header"]
+margin_left = 246.0
+margin_top = 1.0
+margin_right = 301.0
+margin_bottom = 12.0
+size_flags_horizontal = 4
+text = "Edit Users: "
+align = 1
+
+[node name="EditCharNameLabel" type="Label" parent="EditLayer/Header"]
+unique_name_in_owner = true
+margin_left = 302.0
+margin_top = 1.0
+margin_right = 394.0
+margin_bottom = 12.0
+size_flags_horizontal = 4
+text = "[CHARACTER NAME]"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EditLayer"]
+margin_left = 21.0
+margin_top = 65.0
+margin_right = 228.0
+margin_bottom = 89.0
+theme = ExtResource( 8 )
+
+[node name="SearchField" type="LineEdit" parent="EditLayer/HBoxContainer"]
+margin_right = 207.0
+margin_bottom = 11.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource( 8 )
+placeholder_text = "Search by nickname..."
+
+[node name="ItemList" type="ItemList" parent="EditLayer"]
+margin_left = 21.0
+margin_top = 81.0
+margin_right = 228.0
+margin_bottom = 326.0
+size_flags_horizontal = 0
+theme = ExtResource( 8 )
+
+[node name="Panel" type="Panel" parent="EditLayer"]
+margin_left = 234.0
+margin_top = 64.0
+margin_right = 608.0
+margin_bottom = 326.0
+theme = ExtResource( 8 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EditLayer/Panel"]
+anchor_left = 0.0160428
+anchor_top = 0.0305344
+anchor_right = 0.983957
+anchor_bottom = 0.977099
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="EditLayer/Panel/VBoxContainer"]
+margin_right = 366.0
+margin_bottom = 11.0
+text = "Edit User"
+align = 1
+
+[node name="Nickname" type="HBoxContainer" parent="EditLayer/Panel/VBoxContainer"]
+margin_top = 21.0
+margin_right = 366.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="Label" type="Label" parent="EditLayer/Panel/VBoxContainer/Nickname"]
+margin_right = 109.0
+margin_bottom = 11.0
+size_flags_horizontal = 3
+text = "Nickname"
+align = 1
+
+[node name="NicknameField" type="LineEdit" parent="EditLayer/Panel/VBoxContainer/Nickname"]
+margin_left = 110.0
+margin_right = 366.0
+margin_bottom = 11.0
+rect_min_size = Vector2( 256, 0 )
+size_flags_horizontal = 4
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="SteamID" type="HBoxContainer" parent="EditLayer/Panel/VBoxContainer"]
+margin_top = 42.0
+margin_right = 366.0
+margin_bottom = 53.0
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="EditLayer/Panel/VBoxContainer/SteamID"]
+margin_right = 109.0
+margin_bottom = 11.0
+text = "Steam ID (SteamID64) "
+align = 1
+
+[node name="SteamIDField" type="LineEdit" parent="EditLayer/Panel/VBoxContainer/SteamID"]
+margin_left = 110.0
+margin_right = 366.0
+margin_bottom = 11.0
+rect_min_size = Vector2( 256, 0 )
+size_flags_horizontal = 4
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="Access" type="VBoxContainer" parent="EditLayer/Panel/VBoxContainer"]
+margin_top = 63.0
+margin_right = 366.0
+margin_bottom = 191.0
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="EditLayer/Panel/VBoxContainer/Access"]
+margin_right = 366.0
+margin_bottom = 11.0
+text = "Access Keywords"
+align = 1
+
+[node name="Panel" type="Panel" parent="EditLayer/Panel/VBoxContainer/Access"]
+self_modulate = Color( 0.639216, 0.639216, 0.639216, 1 )
+margin_top = 12.0
+margin_right = 366.0
+margin_bottom = 115.0
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="EditLayer/Panel/VBoxContainer/Access/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+scroll_horizontal_enabled = false
+
+[node name="KeywordsList" type="VBoxContainer" parent="EditLayer/Panel/VBoxContainer/Access/Panel/ScrollContainer"]
+unique_name_in_owner = true
+margin_right = 366.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+
+[node name="KeywordDisplay" parent="EditLayer/Panel/VBoxContainer/Access/Panel/ScrollContainer/KeywordsList" instance=ExtResource( 15 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 366.0
+margin_bottom = 12.0
+
+[node name="KeywordAdd" type="HBoxContainer" parent="EditLayer/Panel/VBoxContainer/Access"]
+margin_top = 116.0
+margin_right = 366.0
+margin_bottom = 128.0
+
+[node name="Label" type="Label" parent="EditLayer/Panel/VBoxContainer/Access/KeywordAdd"]
+margin_right = 66.0
+margin_bottom = 11.0
+text = "Add Keyword:"
+
+[node name="LineEdit" type="LineEdit" parent="EditLayer/Panel/VBoxContainer/Access/KeywordAdd"]
+margin_left = 67.0
+margin_right = 345.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+
+[node name="AddButton" type="Button" parent="EditLayer/Panel/VBoxContainer/Access/KeywordAdd"]
+margin_left = 346.0
+margin_right = 366.0
+margin_bottom = 12.0
+text = "Add"
+
+[node name="Control" type="Control" parent="EditLayer/Panel/VBoxContainer"]
+margin_top = 201.0
+margin_right = 366.0
+margin_bottom = 205.0
+rect_min_size = Vector2( 0, 4 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EditLayer/Panel/VBoxContainer"]
+margin_top = 215.0
+margin_right = 366.0
+margin_bottom = 247.0
+custom_constants/separation = 50
+alignment = 1
+
+[node name="Button" type="Button" parent="EditLayer/Panel/VBoxContainer/HBoxContainer"]
+margin_left = 94.0
+margin_right = 158.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 64, 32 )
+size_flags_horizontal = 4
+text = "Submit"
+
+[node name="DeleteButton" type="Button" parent="EditLayer/Panel/VBoxContainer/HBoxContainer"]
+modulate = Color( 1, 0, 0, 1 )
+margin_left = 208.0
+margin_right = 272.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 64, 32 )
+size_flags_horizontal = 4
+text = "Delete"
+
+[node name="BackButton" type="Button" parent="EditLayer"]
+margin_left = 66.0
+margin_top = 22.0
+margin_right = 143.0
+margin_bottom = 42.0
+theme = ExtResource( 8 )
+text = "< Back"
+
+[node name="CreditsLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+script = ExtResource( 18 )
+
+[node name="Panel" type="Panel" parent="CreditsLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -141.0
+margin_top = -154.0
+margin_right = 141.0
+margin_bottom = 165.0
+theme = ExtResource( 8 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CreditsLayer/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+bbcode_enabled = true
+bbcode_text = "[center][u]Credits[/u][/center]
+
+	- [u]Leftie[/u]: Main Programmer (DRM Manager Frontend,
+	  Web API)
+	
+	- [u]cat[/u]: Main Programmer (In-Game Implementation)
+	
+	- [u]ivy sly[/u]: Creator of Your Only Move Is HUSTLE,
+	  original creator of UI assets, utils.gd, and
+	  Array2d.gd
+	
+	- Music: [u]Cocktail Shakers - Girl from Petaluma[/u]
+	
+	[center]Powered by:"
+text = "Credits
+
+	- Leftie: Main Programmer (DRM Manager Frontend,
+	  Web API)
+	
+	- cat: Main Programmer (In-Game Implementation)
+	
+	- ivy sly: Creator of Your Only Move Is HUSTLE,
+	  original creator of UI assets, utils.gd, and
+	  Array2d.gd
+	
+	- Music: Cocktail Shakers - Girl from Petaluma
+	
+	Powered by:"
+
+[node name="TextureRect" type="TextureRect" parent="CreditsLayer/Panel"]
+margin_left = 38.0
+margin_top = 177.0
+margin_right = 2571.0
+margin_bottom = 1201.0
+rect_scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 17 )
+
+[node name="TextureRect2" type="TextureRect" parent="CreditsLayer/Panel"]
+margin_left = 37.0
+margin_top = 261.0
+margin_right = 291.0
+margin_bottom = 312.0
+rect_scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 16 )
+
+[node name="BackButton" type="Button" parent="CreditsLayer"]
+margin_left = 66.0
+margin_top = 22.0
+margin_right = 143.0
+margin_bottom = 42.0
+theme = ExtResource( 8 )
+text = "< Back"
+
+[node name="MuteButton" type="Button" parent="."]
+unique_name_in_owner = true
+anchor_left = 0.037
+anchor_top = 0.064
+anchor_right = 0.046
+anchor_bottom = 0.064
+margin_left = -1.888
+margin_top = -2.4
+margin_right = 12.896
+margin_bottom = 17.6
+rect_min_size = Vector2( 24, 24 )
+mouse_default_cursor_shape = 2
+theme = ExtResource( 8 )
+toggle_mode = true
+icon = ExtResource( 7 )
+expand_icon = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource( 2 )
+autoplay = true
+
+[connection signal="pressed" from="SignInLayer/VBoxContainer/SignInButton" to="SignInLayer" method="_on_SignInButton_pressed"]
+[connection signal="pressed" from="HomeLayer/VBoxContainer/AddButton" to="HomeLayer" method="_on_AddButton_pressed"]
+[connection signal="pressed" from="HomeLayer/VBoxContainer/EditButton" to="HomeLayer" method="_on_EditButton_pressed"]
+[connection signal="pressed" from="HomeLayer/VBoxContainer/CreditsButton" to="HomeLayer" method="_on_CreditsButton_pressed"]
+[connection signal="pressed" from="HomeLayer/VBoxContainer/SignOutButton" to="HomeLayer" method="_on_SignOutButton_pressed"]
+[connection signal="pressed" from="HomeLayer/VBoxContainer/QuitButton" to="HomeLayer" method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="CharSelectLayer/VBoxContainer/CharacterSelectButton" to="CharSelectLayer" method="_on_CharacterSelectButton_pressed"]
+[connection signal="pressed" from="CharSelectLayer/BackButton" to="CharSelectLayer" method="_on_BackButton_pressed"]
+[connection signal="nothing_selected" from="AddLayer/AddLayerContainer/AdvancedEdit/VBoxContainer/Access/AccessList" to="AddLayer/AddLayerContainer/AdvancedEdit" method="_on_AccessList_nothing_selected"]
+[connection signal="pressed" from="AddLayer/BackButton" to="AddLayer" method="_on_BackButton_pressed"]
+[connection signal="text_changed" from="EditLayer/HBoxContainer/SearchField" to="EditLayer" method="_on_SearchField_text_changed"]
+[connection signal="item_selected" from="EditLayer/ItemList" to="EditLayer" method="_on_ItemList_item_selected"]
+[connection signal="pressed" from="EditLayer/Panel/VBoxContainer/Access/KeywordAdd/AddButton" to="EditLayer" method="_on_AddButton_pressed"]
+[connection signal="pressed" from="EditLayer/Panel/VBoxContainer/HBoxContainer/Button" to="EditLayer" method="_on_Button_pressed"]
+[connection signal="pressed" from="EditLayer/Panel/VBoxContainer/HBoxContainer/DeleteButton" to="EditLayer" method="_on_DeleteButton_pressed"]
+[connection signal="pressed" from="EditLayer/BackButton" to="EditLayer" method="_on_BackButton_pressed"]
+[connection signal="pressed" from="CreditsLayer/BackButton" to="CreditsLayer" method="_on_BackButton_pressed"]
+[connection signal="toggled" from="MuteButton" to="." method="_on_MuteButton_toggled"]

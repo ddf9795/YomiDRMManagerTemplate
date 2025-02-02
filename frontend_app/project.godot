@@ -1,0 +1,113 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Control",
+"class": "ActionButton",
+"language": "GDScript",
+"path": "res://ui/ActionSelector/ActionButton.gd"
+}, {
+"base": "Control",
+"class": "ActionButtons",
+"language": "GDScript",
+"path": "res://ui/ActionSelector/ActionButtons.gd"
+}, {
+"base": "Control",
+"class": "ActionUIData",
+"language": "GDScript",
+"path": "res://ui/ActionSelector/ActionUIData/ActionUIData.gd"
+}, {
+"base": "Reference",
+"class": "Array2D",
+"language": "GDScript",
+"path": "res://Array2d.gd"
+}, {
+"base": "Control",
+"class": "ButtonCategoryContainer",
+"language": "GDScript",
+"path": "res://ui/ActionSelector/ButtonCategoryContainer.gd"
+}, {
+"base": "HBoxContainer",
+"class": "PlayerExtra",
+"language": "GDScript",
+"path": "res://ui/ActionSelector/PlayerExtra.gd"
+}, {
+"base": "Control",
+"class": "PlayerInfo",
+"language": "GDScript",
+"path": "res://ui/PlayerInfo.gd"
+}, {
+"base": "Control",
+"class": "SettingsSlider",
+"language": "GDScript",
+"path": "res://ui/CustomizationScreen/SettingsSlider.gd"
+}, {
+"base": "Node",
+"class": "Utils",
+"language": "GDScript",
+"path": "res://utils.gd"
+}, {
+"base": "Control",
+"class": "Window",
+"language": "GDScript",
+"path": "res://ui/Window/Window.gd"
+}, {
+"base": "Container",
+"class": "XYPlot",
+"language": "GDScript",
+"path": "res://ui/XYPlot/XYPlot.gd"
+}, {
+"base": "Panel",
+"class": "YomiColorPicker",
+"language": "GDScript",
+"path": "res://ui/ColorPicker/CustomColorPicker.gd"
+} ]
+_global_script_class_icons={
+"ActionButton": "",
+"ActionButtons": "",
+"ActionUIData": "",
+"Array2D": "",
+"ButtonCategoryContainer": "",
+"PlayerExtra": "",
+"PlayerInfo": "",
+"SettingsSlider": "",
+"Utils": "",
+"Window": "",
+"XYPlot": "",
+"YomiColorPicker": ""
+}
+
+[application]
+
+config/name="DRM Manager"
+run/main_scene="res://Main.tscn"
+config/icon="res://icon.png"
+
+[display]
+
+window/size/width=640
+window/size/height=360
+window/size/test_width=1280
+window/size/test_height=720
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+2d/snapping/use_gpu_pixel_snap=true
+environment/default_environment="res://default_env.tres"

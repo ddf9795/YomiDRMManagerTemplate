@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mongoose": "^8.9.5",
+    "restify": "^11.1.0"
+  },
+  "scripts": {
+    "start": "node ./web_api/app.js",
+    "test": "echo \"Tests complete\""
+  }
+}

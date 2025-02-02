@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://theme.tres" type="Theme" id=1]
+[ext_resource path="res://KeywordDisplay.gd" type="Script" id=2]
+
+[node name="KeywordDisplay" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_top = 174.0
+margin_right = 607.0
+margin_bottom = 185.0
+size_flags_horizontal = 3
+text = "Keyword"
+
+[node name="DeleteButton" type="Button" parent="."]
+margin_left = 608.0
+margin_right = 640.0
+margin_bottom = 360.0
+text = "Delete"
+
+[connection signal="pressed" from="DeleteButton" to="." method="_on_DeleteButton_pressed"]
