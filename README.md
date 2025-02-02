@@ -6,4 +6,4 @@ Setup can be found on the repository wiki, split up into individual steps for re
 
 # Credits
 * **cat** - For almost singlehandedly coding the in-game implementation
-* **ivy sly** - For creating _Your Only Move Is HUSTLE_
+* **ivy sly** - For creating _Your Only Move Is HUSTLE_, and being the original creator of the UI assets and utility scripts included in the files of the Frontend Application
