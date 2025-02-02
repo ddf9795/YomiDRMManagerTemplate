@@ -47,18 +47,11 @@ async function checkWhitelist(req, res) {
 
 function createModel(charname, data) {
   switch (charname) {
-    case 'AlchemistV3':
-      return new AlchemistV3(data)
-    case 'Quantum':
-      return new Quantum(data)
-    case 'Seashanty':
-      return new Seashanty(data)
-    case 'Astrologian':
-      return new Astrologian(data)
-    case 'Shieldbearer':
-      return new Shieldbearer(data)
-    case 'Vandal':
-      return new Vandal(data)
+    // You'll need to add a new case for every model you add to the models/ folder
+    case 'Simple':
+      return new Simple(data)
+    case 'Advanced':
+      return new Advanced(data)
   }
 }
 
