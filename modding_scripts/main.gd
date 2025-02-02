@@ -10,7 +10,7 @@ func _ready():
 	setupDRMNode_CharName()
 	authorname_charname_drm_manager.send_http_request('CharName', SteamHustle.STEAM_ID) # Replace CharName with the name of your character
 	
-func setupDRMNode_Charname():
+func setupDRMNode_CharName():
 	if get_tree().get_current_scene().get_node_or_null("CharNameDRMManager") != null: # Replace with the name of your DRM Manager scene 
 		authorname_charname_drm_manager = get_tree().get_current_scene().get_node("CharNameDRMManager") # Replace with the name of your DRM Manager scene 
 	else:
