@@ -105,7 +105,7 @@ func id_setup(singleplayer, data):
 		elif not ReplayManager.frames.get("network_ids") and Network.steam == true:
 			ReplayManager.frames["network_ids"] = [str(Network.network_ids[1]), str(Network.network_ids[2])]
 			for player in Network.network_ids:
-				if not Network.network_ids.get(player) == SteamHustle.STEAM_ID and get_charname(player, data) == "AlchemistV3":
+				if not Network.network_ids.get(player) == SteamHustle.STEAM_ID and get_charname(player, data) == "CharName": # Replace CharName with the name of your character's scene
 					send_http_request("CharName", Network.network_ids[player]) # Replace CharName with the name of your character's scene
 
 func steamID_spectate_hook(data):
