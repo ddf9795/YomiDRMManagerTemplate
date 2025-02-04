@@ -57,13 +57,16 @@ func get_data(steam):
 func save_data_replay(data):
 	var DRMdict = {"net_info":{}}
 	if ReplayManager.frames.get("network_ids") and not ReplayManager.frames.get("net_info"):
+		var check = false
 		for player in ReplayManager.frames["network_ids"]:
 			var what = ReplayManager.frames["network_ids"].find(player) + 1
 #			print(player)
 #			print(what)
 			if what != -1 and get_charname(what, data) == "CharName": # Replace CharName with the name of your character's scene
+				check = true
 				DRMdict["net_info"][what] = get_data(player)
-		ReplayManager.frames.merge(DRMdict, false)
+		if check:
+			ReplayManager.frames.merge(DRMdict, false)
 		
 
 func get_charname(id: int, data):
@@ -83,7 +86,7 @@ func _process(delta):
 #		print(str(Global.current_game.match_data))
 
 func id_setup(singleplayer, data):
-	var AlchemistV3_found
+	var CharName_found # Replace CharName with the name of your character's scene
 #	print("DRM is setting up ids")
 #	print(str(singleplayer))
 #	print(str(data.selected_characters))
@@ -95,8 +98,8 @@ func id_setup(singleplayer, data):
 			filter += 2
 			cname = cname.right(filter)
 		if cname == "CharName": # Replace CharName with the name of your character's scene
-			AlchemistV3_found = true
-	if AlchemistV3_found == true:
+			CharName_found = true # Replace CharName with the name of your character's scene
+	if CharName_found == true: # Replace CharName with the name of your character's scene
 		if not ReplayManager.frames.get("network_ids") and singleplayer == true:
 			#var overwrites = {"network_ids":[str(SteamHustle.STEAM_ID), null]}
 			#ReplayManager.frames.merge(overwrites, true)
